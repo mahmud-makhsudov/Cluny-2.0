@@ -1,0 +1,20 @@
+# Visual Studio / Visual Studio Code
+.vs/
+bin/
+obj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Rider / JetBrains
+.idea/
+
+# Build outputs
+publish/
+dist/
+
+# DotNet
+*.dll
+*.exe
+*.pdb

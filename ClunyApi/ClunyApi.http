@@ -1,0 +1,6 @@
+@ClunyApi_HostAddress = http://localhost:5224
+
+GET {{ClunyApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
