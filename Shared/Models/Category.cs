@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace WebApi.Models
+namespace Shared.Models
 {
     public class Category
     {

@@ -2,7 +2,7 @@
 using System.Text.Json.Serialization;
 using System.Timers;
 
-namespace WebApi.Models
+namespace Shared.Models
 {
     public class OrderSelectedOption
     {

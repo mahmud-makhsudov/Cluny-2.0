@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
-namespace WebApi.Models
+namespace Shared.Models
 {
     public class Option
     {
