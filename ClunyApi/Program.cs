@@ -10,6 +10,7 @@ using Microsoft.IdentityModel.Tokens;
 using Shared.Constants;
 using System.Security.Claims;
 using System.Text;
+using ClunyApi.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -41,7 +42,7 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
 .AddDefaultTokenProviders();
 
 builder.Services.AddAutoMapper(typeof(AutoMapperProfile));
-//builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
 
 builder.Services.AddAuthentication(options =>
 {

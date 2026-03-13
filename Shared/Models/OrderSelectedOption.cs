@@ -8,10 +8,8 @@ namespace Shared.Models
     {
         public int Id { get; set; }
 
-        [Required]
         public int OrderId { get; set; }
 
-        [Required]
         public int OptionId { get; set; }
 
         [JsonIgnore]

@@ -7,7 +7,6 @@ namespace Shared.Models
     {
         public int Id { get; set; }
 
-        [Required]
         public int OptionGroupId { get; set; }
 
         [JsonIgnore]

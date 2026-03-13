@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace Shared.Models
 {
@@ -13,6 +14,7 @@ namespace Shared.Models
 
         public ICollection<Option> Options { get; set; } = new List<Option>();
 
+        [JsonIgnore]
         public ICollection<Product> Products { get; set; } = new List<Product>();
 
         public int? DisplayOrder { get; set; } = null;

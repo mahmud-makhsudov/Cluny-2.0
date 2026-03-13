@@ -7,12 +7,12 @@ namespace ClunyApi.Mapping
     {
         public AutoMapperProfile()
         {
-            //CreateMap<Product, ProductDto>();
-            //CreateMap<ProductCreateDto, Product>()
-            //    .ForMember(dest => dest.Id, opt => opt.Ignore())
-            //    .ForMember(dest => dest.Category, opt => opt.Ignore());
+            CreateMap<CreateProductDto, Product>()
+                .ForMember(dest => dest.Id, opt => opt.Ignore())
+                .ForMember(dest => dest.Category, opt => opt.Ignore());
 
-            //CreateMap<Category, CategorySummaryDto>().ReverseMap();
+            CreateMap<UpdateProductDto, Product>()
+                .ForMember(dest => dest.Category, opt => opt.Ignore());
         }
     }
 }
