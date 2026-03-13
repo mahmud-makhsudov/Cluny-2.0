@@ -1,4 +1,5 @@
 using AutoMapper;
+using Shared.Dtos;
 using Shared.Models;
 
 namespace ClunyApi.Mapping
@@ -13,6 +14,9 @@ namespace ClunyApi.Mapping
 
             CreateMap<UpdateProductDto, Product>()
                 .ForMember(dest => dest.Category, opt => opt.Ignore());
+
+            CreateMap<UpdateCategoryDto, Category>()
+                .ForMember(dest => dest.Products, opt => opt.Ignore());
         }
     }
 }

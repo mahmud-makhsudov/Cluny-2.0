@@ -1,6 +1,7 @@
 using AutoMapper;
 using ClunyApi.Repositories;
 using Microsoft.AspNetCore.Mvc;
+using Shared.Dtos;
 using Shared.Models;
 
 namespace ClunyApi.Controllers
@@ -39,14 +40,14 @@ namespace ClunyApi.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateAsync(int id, UpdateProductDto dto)
+        public async Task<IActionResult> UpdateProduct(int id, UpdateProductDto dto)
         {
             await productRepository.UpdateAsync(id, dto);
             return NoContent();
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteAsync(int id)
+        public async Task<IActionResult> DeleteProduct(int id)
         {
             await productRepository.DeleteAsync(id);
             return Ok();

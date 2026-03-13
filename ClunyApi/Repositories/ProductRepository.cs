@@ -2,6 +2,7 @@
 using ClunyApi.Data;
 using ClunyApi.Exceptions;
 using Microsoft.EntityFrameworkCore;
+using Shared.Dtos;
 using Shared.Models;
 
 namespace ClunyApi.Repositories
@@ -99,6 +100,6 @@ namespace ClunyApi.Repositories
             await context.SaveChangesAsync();
         }
 
-
+         
     }
 }

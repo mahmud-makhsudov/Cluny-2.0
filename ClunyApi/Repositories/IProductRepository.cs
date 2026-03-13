@@ -1,4 +1,5 @@
-﻿using Shared.Models;
+﻿using Shared.Dtos;
+using Shared.Models;
 
 namespace ClunyApi.Repositories
 {
