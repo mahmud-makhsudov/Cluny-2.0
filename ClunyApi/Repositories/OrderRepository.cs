@@ -154,6 +154,9 @@ namespace ClunyApi.Repositories
                 .FirstOrDefaultAsync(o => o.Id == optionId);
             if (option == null) throw new EntityNotFoundException("Option", optionId);
 
+            if (option.OptionGroup == null)
+                throw new EntityNotFoundException("OptionGroup", option.OptionGroupId);
+
             var selectedOption = new OrderSelectedOption
             {
                 OrderId = orderId,
