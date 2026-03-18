@@ -8,22 +8,16 @@ namespace ClunyApi.Mapping
     {
         public AutoMapperProfile()
         {
-            CreateMap<CreateProductDto, Product>()
-                .ForMember(dest => dest.Id, opt => opt.Ignore())
-                .ForMember(dest => dest.Category, opt => opt.Ignore());
+            CreateMap<UpdateCategoryDto, Category>();
 
-            CreateMap<UpdateProductDto, Product>()
-                .ForMember(dest => dest.Category, opt => opt.Ignore());
+            CreateMap<CreateProductDto, Product>();
+            CreateMap<UpdateProductDto, Product>();
 
-            CreateMap<UpdateCategoryDto, Category>()
-                .ForMember(dest => dest.Products, opt => opt.Ignore());
-
-            CreateMap<CreateOrderDto, Order>()
-                .ForMember(dest => dest.Id, opt => opt.Ignore())
-                .ForMember(dest => dest.Product, opt => opt.Ignore())
-                .ForMember(dest => dest.User, opt => opt.Ignore());
-
+            CreateMap<CreateOrderDto, Order>();
             CreateMap<UpdateOrderDto, Order>();
+
+            CreateMap<CreateOptionGroupDto, OptionGroup>();
+            CreateMap<UpdateOptionGroupDto, OptionGroup>();
         }
     }
 }
