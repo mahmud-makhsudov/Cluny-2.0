@@ -63,7 +63,7 @@ namespace ClunyApi.Repositories
         {
             if (id != dto.Id) throw new ArgumentException($"Route id ({id}) does not match entity Id ({dto.Id}).", nameof(id));
 
-            if (id < 0) throw new ArgumentOutOfRangeException("Id must be a non-negative integer.");
+            if (id < 0 || dto.Id < 0) throw new ArgumentOutOfRangeException("Id must be a non-negative integer.");
 
             var category = await context.Categories.FindAsync(id);
             if (category == null) throw new EntityNotFoundException("Category", id);
