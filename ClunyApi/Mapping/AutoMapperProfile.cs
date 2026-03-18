@@ -24,7 +24,6 @@ namespace ClunyApi.Mapping
                 .ForMember(dest => dest.User, opt => opt.Ignore());
 
             CreateMap<UpdateOrderDto, Order>();
-
         }
     }
 }

@@ -43,25 +43,7 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
 .AddEntityFrameworkStores<ApplicationDbContext>()
 .AddDefaultTokenProviders();
 
-builder.Services.AddAutoMapper(cfg =>
-{
-    cfg.CreateMap<CreateProductDto, Product>()
-                .ForMember(dest => dest.Id, opt => opt.Ignore())
-                .ForMember(dest => dest.Category, opt => opt.Ignore());
-
-    cfg.CreateMap<UpdateProductDto, Product>()
-        .ForMember(dest => dest.Category, opt => opt.Ignore());
-
-    cfg.CreateMap<UpdateCategoryDto, Category>()
-        .ForMember(dest => dest.Products, opt => opt.Ignore());
-
-    cfg.CreateMap<CreateOrderDto, Order>()
-        .ForMember(dest => dest.Id, opt => opt.Ignore())
-        .ForMember(dest => dest.Product, opt => opt.Ignore())
-        .ForMember(dest => dest.User, opt => opt.Ignore());
-
-    cfg.CreateMap<UpdateOrderDto, Order>();
-});
+builder.Services.AddAutoMapper(cfg => cfg.AddProfile<AutoMapperProfile>());
 
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
