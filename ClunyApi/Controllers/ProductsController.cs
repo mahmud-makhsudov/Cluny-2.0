@@ -1,6 +1,8 @@
 using AutoMapper;
 using ClunyApi.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Shared.Constants;
 using Shared.Dtos;
 using Shared.Models;
 
@@ -32,6 +34,7 @@ namespace ClunyApi.Controllers
         }
 
         [HttpPost]
+        [Authorize(Policy = AuthConstants.AdminPolicy)]
         public async Task<ActionResult<Product>> CreateProduct(CreateProductDto dto)
         {
             var created = await productRepository.CreateAsync(dto);
@@ -40,6 +43,7 @@ namespace ClunyApi.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize(Policy = AuthConstants.AdminPolicy)]
         public async Task<IActionResult> UpdateProduct(int id, UpdateProductDto dto)
         {
             await productRepository.UpdateAsync(id, dto);
@@ -47,6 +51,7 @@ namespace ClunyApi.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Policy = AuthConstants.AdminPolicy)]
         public async Task<IActionResult> DeleteProduct(int id)
         {
             await productRepository.DeleteAsync(id);
@@ -54,6 +59,7 @@ namespace ClunyApi.Controllers
         }
 
         [HttpPost("{id}/option-groups/{optionGroupId}")]
+        [Authorize(Policy = AuthConstants.AdminPolicy)]
         public async Task<IActionResult> AddOptionGroup(int id, int optionGroupId)
         {
             await productRepository.AddOptionGroupToProductAsync(id, optionGroupId);
@@ -61,6 +67,7 @@ namespace ClunyApi.Controllers
         }
 
         [HttpDelete("{id}/option-groups/{optionGroupId}")]
+        [Authorize(Policy = AuthConstants.AdminPolicy)]
         public async Task<IActionResult> RemoveOptionGroup(int id, int optionGroupId)
         {
             await productRepository.RemoveOptionGroupFromProductAsync(id, optionGroupId);

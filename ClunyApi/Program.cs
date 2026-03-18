@@ -4,13 +4,10 @@ using ClunyApi.Mapping;
 using ClunyApi.Middleware;
 using ClunyApi.Repositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Authentication.OAuth;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Shared.Constants;
-using Shared.Dtos;
-using Shared.Models;
 using System.Security.Claims;
 using System.Text;
 

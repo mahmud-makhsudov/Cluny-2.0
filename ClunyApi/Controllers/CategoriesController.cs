@@ -1,6 +1,8 @@
 using AutoMapper;
 using ClunyApi.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Shared.Constants;
 using Shared.Dtos;
 using Shared.Models;
 
@@ -32,6 +34,7 @@ namespace ClunyApi.Controllers
         }
 
         [HttpPost]
+        [Authorize(Policy = AuthConstants.AdminPolicy)]
         public async Task<ActionResult<Category>> CreateCategory(string name)
         {
             var created = await categoryRepository.CreateAsync(name);
@@ -40,6 +43,7 @@ namespace ClunyApi.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize(Policy = AuthConstants.AdminPolicy)]
         public async Task<IActionResult> UpdateCategory(int id, UpdateCategoryDto dto)
         {
             await categoryRepository.UpdateAsync(id, dto);
@@ -47,6 +51,7 @@ namespace ClunyApi.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Policy = AuthConstants.AdminPolicy)]
         public async Task<IActionResult> DeleteCategory(int id)
         {
             await categoryRepository.DeleteAsync(id);
