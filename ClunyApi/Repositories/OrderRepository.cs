@@ -89,18 +89,6 @@ namespace ClunyApi.Repositories
             var user = await context.Users.FindAsync(dto.UserId);
             if (user == null) throw new EntityNotFoundException("User", dto.UserId);
 
-            //var existingOrder = await context.Orders
-            //    .FirstOrDefaultAsync(o => o.UserId == dto.UserId && o.ProductId == dto.ProductId);
-
-            //if (existingOrder != null)
-            //{
-            //    existingOrder.Quantity += dto.Quantity;
-            //    existingOrder.CreatedDate = DateTime.UtcNow;
-
-            //    await context.SaveChangesAsync();
-            //    return existingOrder;
-            //}
-
             var order = mapper.Map<Order>(dto);
 
             order.ProductName = product.Name;
