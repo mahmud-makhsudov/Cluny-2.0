@@ -49,6 +49,7 @@ builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 builder.Services.AddScoped<IOptionGroupRepository, OptionGroupRepository>();
+builder.Services.AddScoped<IOptionRepository, OptionRepository>();
 
 builder.Services.AddAuthentication(options =>
 {

@@ -18,6 +18,9 @@ namespace ClunyApi.Mapping
 
             CreateMap<CreateOptionGroupDto, OptionGroup>();
             CreateMap<UpdateOptionGroupDto, OptionGroup>();
+
+            CreateMap<CreateOptionDto, Option>();
+            CreateMap<UpdateOptionDto, Option>();
         }
     }
 }
