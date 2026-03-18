@@ -52,5 +52,19 @@ namespace ClunyApi.Controllers
             await productRepository.DeleteAsync(id);
             return Ok();
         }
+
+        [HttpPost("{id}/option-groups/{optionGroupId}")]
+        public async Task<IActionResult> AddOptionGroup(int id, int optionGroupId)
+        {
+            await productRepository.AddOptionGroupToProductAsync(id, optionGroupId);
+            return NoContent();
+        }
+
+        [HttpDelete("{id}/option-groups/{optionGroupId}")]
+        public async Task<IActionResult> RemoveOptionGroup(int id, int optionGroupId)
+        {
+            await productRepository.RemoveOptionGroupFromProductAsync(id, optionGroupId);
+            return NoContent();
+        }
     }
 }

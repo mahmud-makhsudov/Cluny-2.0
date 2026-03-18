@@ -100,6 +100,44 @@ namespace ClunyApi.Repositories
             await context.SaveChangesAsync();
         }
 
-         
+        public async Task AddOptionGroupToProductAsync(int productId, int optionGroupId)
+        {
+            if (productId < 0) throw new ArgumentOutOfRangeException(nameof(productId));
+            if (optionGroupId < 0) throw new ArgumentOutOfRangeException(nameof(optionGroupId));
+
+            var product = await context.Products
+                .Include(p => p.OptionGroups)
+                .FirstOrDefaultAsync(p => p.Id == productId);
+            if (product == null) throw new EntityNotFoundException("Product", productId);
+
+            var group = await context.OptionGroups.FindAsync(optionGroupId);
+            if (group == null) throw new EntityNotFoundException("OptionGroup", optionGroupId);
+
+            if (!product.OptionGroups.Any(g => g.Id == optionGroupId))
+            {
+                product.OptionGroups.Add(group);
+                await context.SaveChangesAsync();
+            }
+        }
+
+        public async Task RemoveOptionGroupFromProductAsync(int productId, int optionGroupId)
+        {
+            if (productId < 0) throw new ArgumentOutOfRangeException(nameof(productId));
+            if (optionGroupId < 0) throw new ArgumentOutOfRangeException(nameof(optionGroupId));
+
+            var product = await context.Products
+                .Include(p => p.OptionGroups)
+                .FirstOrDefaultAsync(p => p.Id == productId);
+            if (product == null) throw new EntityNotFoundException("Product", productId);
+
+            var existing = product.OptionGroups.FirstOrDefault(g => g.Id == optionGroupId);
+            if (existing != null)
+            {
+                product.OptionGroups.Remove(existing);
+                await context.SaveChangesAsync();
+            }
+        }
+
+
     }
 }

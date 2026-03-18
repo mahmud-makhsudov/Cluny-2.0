@@ -17,6 +17,14 @@ namespace ClunyApi.Mapping
 
             CreateMap<UpdateCategoryDto, Category>()
                 .ForMember(dest => dest.Products, opt => opt.Ignore());
+
+            CreateMap<CreateOrderDto, Order>()
+                .ForMember(dest => dest.Id, opt => opt.Ignore())
+                .ForMember(dest => dest.Product, opt => opt.Ignore())
+                .ForMember(dest => dest.User, opt => opt.Ignore());
+
+            CreateMap<UpdateOrderDto, Order>();
+
         }
     }
 }

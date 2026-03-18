@@ -295,8 +295,8 @@ namespace ClunyApi.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    OrderId = table.Column<int>(type: "int", nullable: false),
                     OptionId = table.Column<int>(type: "int", nullable: false),
+                    OrderId = table.Column<int>(type: "int", nullable: false),
                     OptionName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PriceAtPurchase = table.Column<decimal>(type: "decimal(18,2)", precision: 18, scale: 2, nullable: false),
                     GroupName = table.Column<string>(type: "nvarchar(max)", nullable: false)
@@ -304,12 +304,6 @@ namespace ClunyApi.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_OrderSelectedOptions", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_OrderSelectedOptions_Options_OptionId",
-                        column: x => x.OptionId,
-                        principalTable: "Options",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_OrderSelectedOptions_Orders_OrderId",
                         column: x => x.OrderId,
@@ -453,11 +447,6 @@ namespace ClunyApi.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_OrderSelectedOptions_OptionId",
-                table: "OrderSelectedOptions",
-                column: "OptionId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_OrderSelectedOptions_OrderId",
                 table: "OrderSelectedOptions",
                 column: "OrderId");
@@ -492,6 +481,9 @@ namespace ClunyApi.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "Options");
+
+            migrationBuilder.DropTable(
                 name: "OrderSelectedOptions");
 
             migrationBuilder.DropTable(
@@ -499,9 +491,6 @@ namespace ClunyApi.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
-
-            migrationBuilder.DropTable(
-                name: "Options");
 
             migrationBuilder.DropTable(
                 name: "Orders");

@@ -1,16 +1,18 @@
 using ClunyApi.Data;
 using ClunyApi.Filters;
-using ClunyApi.Middleware;
 using ClunyApi.Mapping;
+using ClunyApi.Middleware;
+using ClunyApi.Repositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authentication.OAuth;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Shared.Constants;
+using Shared.Dtos;
+using Shared.Models;
 using System.Security.Claims;
 using System.Text;
-using ClunyApi.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -41,9 +43,29 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
 .AddEntityFrameworkStores<ApplicationDbContext>()
 .AddDefaultTokenProviders();
 
-builder.Services.AddAutoMapper(typeof(AutoMapperProfile));
+builder.Services.AddAutoMapper(cfg =>
+{
+    cfg.CreateMap<CreateProductDto, Product>()
+                .ForMember(dest => dest.Id, opt => opt.Ignore())
+                .ForMember(dest => dest.Category, opt => opt.Ignore());
+
+    cfg.CreateMap<UpdateProductDto, Product>()
+        .ForMember(dest => dest.Category, opt => opt.Ignore());
+
+    cfg.CreateMap<UpdateCategoryDto, Category>()
+        .ForMember(dest => dest.Products, opt => opt.Ignore());
+
+    cfg.CreateMap<CreateOrderDto, Order>()
+        .ForMember(dest => dest.Id, opt => opt.Ignore())
+        .ForMember(dest => dest.Product, opt => opt.Ignore())
+        .ForMember(dest => dest.User, opt => opt.Ignore());
+
+    cfg.CreateMap<UpdateOrderDto, Order>();
+});
+
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 
 builder.Services.AddAuthentication(options =>
 {

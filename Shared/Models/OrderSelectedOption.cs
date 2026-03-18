@@ -8,12 +8,12 @@ namespace Shared.Models
     {
         public int Id { get; set; }
 
-        public int OrderId { get; set; }
-
         public int OptionId { get; set; }
 
+        public int OrderId { get; set; }
+
         [JsonIgnore]
-        public Option? Option { get; set; }
+        public Order? Order { get; set; }
 
         // Purchase-time snapshots
         public string OptionName { get; set; } = string.Empty;

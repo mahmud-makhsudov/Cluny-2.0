@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ClunyApi.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20260312204554_Init")]
+    [Migration("20260318042602_Init")]
     partial class Init
     {
         /// <inheritdoc />
@@ -509,8 +509,6 @@ namespace ClunyApi.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("OptionId");
-
                     b.HasIndex("OrderId");
 
                     b.ToTable("OrderSelectedOptions");
@@ -926,19 +924,13 @@ namespace ClunyApi.Migrations
 
             modelBuilder.Entity("Shared.Models.OrderSelectedOption", b =>
                 {
-                    b.HasOne("Shared.Models.Option", "Option")
-                        .WithMany()
-                        .HasForeignKey("OptionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Shared.Models.Order", null)
+                    b.HasOne("Shared.Models.Order", "Order")
                         .WithMany("SelectedOptions")
                         .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Option");
+                    b.Navigation("Order");
                 });
 
             modelBuilder.Entity("Shared.Models.Product", b =>
