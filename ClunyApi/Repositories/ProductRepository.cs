@@ -55,6 +55,20 @@ namespace ClunyApi.Repositories
             return product;
         }
 
+        public async Task<IEnumerable<Product>> GetByCategoryAsync(int id)
+        {
+            if (id < 0) throw new ArgumentOutOfRangeException(nameof(id), "Id must be a non-negative integer.");
+
+            var products = await context.Products
+                .Include(p => p.Category)
+                .Include(p => p.OptionGroups)
+                    .ThenInclude(g => g.Options)
+                .Where(p => p.CategoryId == id)
+                .ToListAsync();
+
+            return products;
+        }
+
         public async Task<Product> CreateAsync(CreateProductDto dto)
         {
             if (dto.CategoryId < 0) throw new ArgumentOutOfRangeException(nameof(dto.CategoryId), "Id must be a non-negative integer.");

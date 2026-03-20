@@ -33,6 +33,13 @@ namespace ClunyApi.Controllers
             return Ok(item);
         }
 
+        [HttpGet("category/{id}")]
+        public async Task<ActionResult<IEnumerable<Product>>> GetProductByCategory(int id)
+        {
+            var item = await productRepository.GetByCategoryAsync(id);
+            return Ok(item);
+        }
+
         [HttpPost]
         [Authorize(Policy = AuthConstants.AdminPolicy)]
         public async Task<ActionResult<Product>> CreateProduct(CreateProductDto dto)
