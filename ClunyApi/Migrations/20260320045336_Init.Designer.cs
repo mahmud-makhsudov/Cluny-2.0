@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ClunyApi.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20260318042602_Init")]
+    [Migration("20260320045336_Init")]
     partial class Init
     {
         /// <inheritdoc />
@@ -453,6 +453,7 @@ namespace ClunyApi.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<decimal>("PriceAtPurchase")
+                        .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("ProductId")

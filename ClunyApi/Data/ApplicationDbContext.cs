@@ -24,6 +24,10 @@ namespace ClunyApi.Data
                 .Property(p => p.Price)
                 .HasPrecision(18, 2);
 
+            modelBuilder.Entity<Order>()
+              .Property(o => o.PriceAtPurchase)
+              .HasPrecision(18, 2);
+
             modelBuilder.Entity<OrderSelectedOption>()
                 .Property(s => s.PriceAtPurchase)
                 .HasPrecision(18, 2);

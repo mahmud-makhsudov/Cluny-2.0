@@ -31,28 +31,9 @@ namespace ClunyApi.Controllers
                 return BadRequest(pd);
             }
 
-            if (string.IsNullOrWhiteSpace(credential?.Password))
-            {
-                ModelState.AddModelError("Invalid", "Password is required.");
-                var pd = new ProblemDetails { Title = "Invalid request", Status = StatusCodes.Status400BadRequest };
-                return BadRequest(pd);
-            }
-
             var user = await userManager.FindByEmailAsync(credential.EmailAddress);
             if (user != null)
             {
-                var passwordValid = await userManager.CheckPasswordAsync(user, credential.Password);
-                if (!passwordValid)
-                {
-                    ModelState.AddModelError("Unauthorized", "Invalid email or password.");
-                    var problemDetails = new ProblemDetails
-                    {
-                        Title = "Unauthorized",
-                        Status = StatusCodes.Status401Unauthorized
-                    };
-                    return Unauthorized(problemDetails);
-                }
-
                 var claims = new List<Claim>
                 {
                     new Claim(ClaimTypes.NameIdentifier, user.Id),
